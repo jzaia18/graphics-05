@@ -11,7 +11,7 @@ module MatrixUtils
     return ret
   end
 
-  # Multiplies 2 matricies (dot product) and returns result
+  # Multiplies 2 matricies (dot product) and modifies second input
   def self.multiply(m1, m2)
     raise "Cannot multiply these matricies due to their dimensions" if m1.cols != m2.rows
     for r in (0...m1.rows)
@@ -25,27 +25,26 @@ module MatrixUtils
     return m2
   end
 
-  # Adds 2 matricies and returns result
+  # Adds 2 matricies and modifies first input
   def self.add(m1, m2)
     raise "Cannot add these matricies due to their dimensions" if m1.rows != m2.rows || m1.cols != m2.cols
-    ret = Matrix.new(m1.rows, m1.cols)
     for r in (0...m1.rows)
       for c in (0...m1.cols)
-        ret.set(r, c, m1.get(r, c) + m2.get(r, c))
+        m1.set(r, c, m1.get(r, c) + m2.get(r, c))
       end
     end
-    return ret
+    return m1
   end
 
+  # Subtracts 2 matricies and modifies first input
   def self.subtract(m1, m2)
     raise "Cannot subtract these matricies due to their dimensions" if m1.rows != m2.rows || m1.cols != m2.cols
-    ret = Matrix.new(m1.rows, m1.cols)
     for r in (0...m1.rows)
       for c in (0...m1.cols)
-        ret.set(r, c, m1.get(r, c) - m2.get(r, c))
+        m1.set(r, c, m1.get(r, c) - m2.get(r, c))
       end
     end
-    return ret
+    return m1
   end
 
   def self.dilation(sx, sy, sz)
@@ -89,5 +88,33 @@ module MatrixUtils
     return ret
   end
 
+  def self.hermite()
+    ret = Matrix.new(4, 4)
+    ret.set(0, 0, 2)
+    ret.set(0, 1, -2)
+    ret.set(0, 2, 1)
+    ret.set(0, 3, 1)
+    ret.set(1, 0, -3)
+    ret.set(1, 1, 3)
+    ret.set(1, 2, -2)
+    ret.set(1, 3, -1)
+    ret.set(3, 0, 1)
+    return ret
+  end
+
+  def self.bezier()
+    ret = Matrix.new(4, 4)
+    ret.set(0, 0, -1)
+    ret.set(0, 1, 3)
+    ret.set(0, 2, -3)
+    ret.set(0, 3, -1)
+    ret.set(1, 0, 3)
+    ret.set(1, 1, -6)
+    ret.set(1, 2, 3)
+    ret.set(2, 0, -3)
+    ret.set(2, 1, 3)
+    ret.set(3, 0, 1)
+    return ret
+  end
 
 end
