@@ -4,12 +4,9 @@ module Draw
 
   # Plot a point on GRID (from top left)
   def self.plot(x, y, r: $RC, g: $GC, b: $BC)
+    y = $RESOLUTION - y
     return if x < 0 || y < 0 || x >= $RESOLUTION || y >= $RESOLUTION
     $GRID[y.to_i][x.to_i] = [r.floor, g.floor, b.floor]
-  end
-  # Plot a point on GRID (from bottom left)
-  def self.plot_bot(x, y, r: $RC, g: $GC, b: $BC)
-    plot(x, $RESOLUTION - y, r: r, g: g, b: b)
   end
 
   # Define a line by 2 points
@@ -79,6 +76,24 @@ module Draw
       end
     end
   end
+
+  # Circle
+  def self.circle(cx, cy, cz, rad)
+    t = 0
+    while (t < 1)
+      add_edge(cx + rad * cos($TAU * t), cy + rad * sin($TAU * t), cz, cx + rad * cos($TAU * (t + $dt)), cy + rad * sin($TAU * (t + $dt)), cz )
+      t += $dt
+    end
+  end
+
+  def self.hermite(x0, y0, x1, y1, dx0, dy0, dx1, dy1)
+
+  end
+
+  def self.bezier(x0, y0, x1, y1, x2, y2, x3, y3)
+
+  end
+
 
   # Helper for add_edge
   def self.add_point(x, y, z)
