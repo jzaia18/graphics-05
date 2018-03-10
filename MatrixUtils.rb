@@ -107,6 +107,7 @@ module MatrixUtils
     ret.set(1, 1, 3)
     ret.set(1, 2, -2)
     ret.set(1, 3, -1)
+    ret.set(2, 2, 1)
     ret.set(3, 0, 1)
     return ret
   end

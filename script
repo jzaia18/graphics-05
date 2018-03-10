@@ -1,6 +1,5 @@
-bezier
-100 100 200 500 300 0 400 400
+hermite
+300 300 100 300 100 100 100 100
 apply
 display
-ident
 quit
