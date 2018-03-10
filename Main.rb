@@ -10,13 +10,13 @@ $TAU = PI*2
 
 # Changeable
 $RESOLUTION = 500 # All images are squares
-$DEBUGGING = false
+$DEBUGGING = true
 $BACKGROUND_COLOR = [80, 80, 80] # [r, g, b]
 $DRAW_COLOR = [255, 255, 0]
 $INFILE = "script"
 $OUTFILE = "image.ppm"
 $TEMPFILE = "temmmmp.ppm" # Used as temp storage for displaying
-$dt = 0.01 # The amount that the parametric t is incremented by on each loop
+$dt = 0.008 # The amount that the parametric t is incremented by on each loop
 
 # Static
 $GRID = Utils.create_grid()

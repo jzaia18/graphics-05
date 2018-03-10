@@ -19,52 +19,13 @@ module Draw
     dx = x1-x0
     x = x0
     y = y0
-    d = -1 * dx
+    #d = -1 * dx
 
     ## Begin actual algorithm:
-    if dy <= 0 #if the line is in octants I or II
-      if dy.abs <= dx #octant I
-        puts "Drawing line in Octant I" if $DEBUGGING
-        while x <= x1
-          plot(x, y, r: r, g: g, b: b)
-          if d > 0
-            y-=1
-            d-=2*dx
-          end
-          x+=1
-          d-=2*dy
-        end
-
-      else #octant II
-        puts "Drawing line in Octant II" if $DEBUGGING
-        while y >= y1
-          plot(x, y, r: r, g: g, b: b)
-          if d > 0
-            x+=1
-            d+=2*dy
-          end
-          y-=1
-          d+=2*dx
-        end
-      end
-
-    else #if the line is in octants VII or VIII
-
-      if dy >= dx #octant VII
-        puts "Drawing line in Octant VII" if $DEBUGGING
-        while y <= y1
-          plot(x, y, r: r, g: g, b: b)
-          if d > 0
-            x+=1
-            d-=2*dy
-          end
-          y+=1
-          d+=2*dx
-        end
-
-      else #octant VIII
-        puts "Drawing line in Octant VIII" if $DEBUGGING
-        while x <= x1
+    if dy >= 0 #if the line is in octants I or II
+      if dy < dx #octant I
+        d = 2*dy - dx
+        while x < x1
           plot(x, y, r: r, g: g, b: b)
           if d > 0
             y+=1
@@ -73,6 +34,49 @@ module Draw
           x+=1
           d+=2*dy
         end
+        plot(x, y, r: r, g: g, b: b)
+
+      else #octant II
+        d = dy - 2*dx
+        while y < y1
+          plot(x, y, r: r, g: g, b: b)
+          if d < 0
+            x+=1
+            d+=2*dy
+          end
+          y+=1
+          d-=2*dx
+        end
+        plot(x, y, r: r, g: g, b: b)
+      end
+
+    else #if the line is in octants VII or VIII
+
+      if dy.abs > dx #octant VII
+        d = dy + 2*dx
+        while y > y1
+          plot(x, y, r: r, g: g, b: b)
+          if d > 0
+            x+=1
+            d+=2*dy
+          end
+          y-=1
+          d+=2*dx
+        end
+        plot(x, y, r: r, g: g, b: b)
+
+      else #octant VIII
+        d = 2*dy + dx
+        while x < x1
+          plot(x, y, r: r, g: g, b: b)
+          if d < 0
+            y-=1
+            d+=2*dx
+          end
+          x+=1
+          d+=2*dy
+        end
+        plot(x, y, r: r, g: g, b: b)
       end
     end
   end
