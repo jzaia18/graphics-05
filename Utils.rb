@@ -68,12 +68,11 @@ module Utils
       when "hermite"
         args = file.gets.chomp.split(" ")
         for i in (0...8); args[i] = args[i].to_f end
-        Draw.hermite(args[0], args[1], args[2], args[3])
+        Draw.hermite(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7])
       when "bezier"
         args = file.gets.chomp.split(" ")
         for i in (0...8); args[i] = args[i].to_f end
-        Draw.bezier(args[0], args[1], args[2], args[3])
-
+        Draw.bezier(args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7])
       when "ident"
         $TRAN_MAT = MatrixUtils.identity(4)
       when "scale"
@@ -97,7 +96,7 @@ module Utils
       when "save"
         arg = file.gets.chomp
         write_out(file: arg)
-      when "quit"
+      when "quit", "exit"
         exit 0
       else
         puts "ERROR: Unrecognized command \"" + line + '"'

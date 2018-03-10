@@ -1,6 +1,6 @@
-circle
-250 250 250 225
+bezier
+100 100 200 500 300 0 400 400
 apply
 display
+ident
 quit
-display

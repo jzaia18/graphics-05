@@ -12,17 +12,26 @@ module MatrixUtils
   end
 
   # Multiplies 2 matricies (dot product) and modifies second input
-  def self.multiply(m1, m2)
+  def self.multiply(m1, m2, modify_second: true)
     raise "Cannot multiply these matricies due to their dimensions" if m1.cols != m2.rows
-    for r in (0...m1.rows)
-      for c in (0...m2.cols)
+    ret = Matrix.new(m1.rows, m2.cols)
+    for r in (0...ret.rows)
+      for c in (0...ret.cols)
         sum = 0
         for i in (0...m1.rows) # Get the dot product and sum it
           sum += m1.get_row(r)[i] * m2.get_col(c)[i] end
-        m2.set(r, c, sum)
+        ret.set(r, c, sum)
       end
     end
-    return m2
+
+    if modify_second
+      for r in (0...m2.rows)
+        for c in (0...m2.cols)
+          m2.set(r, c, ret.get(r, c))
+        end
+      end
+    end
+    return ret
   end
 
   # Adds 2 matricies and modifies first input
@@ -107,7 +116,7 @@ module MatrixUtils
     ret.set(0, 0, -1)
     ret.set(0, 1, 3)
     ret.set(0, 2, -3)
-    ret.set(0, 3, -1)
+    ret.set(0, 3, 1)
     ret.set(1, 0, 3)
     ret.set(1, 1, -6)
     ret.set(1, 2, 3)
