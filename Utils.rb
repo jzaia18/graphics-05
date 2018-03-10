@@ -16,7 +16,7 @@ module Utils
 
   ## Write GRID to OUTFILE
   def self.write_out(file: $OUTFILE, edgemat: $EDGE_MAT)
-    extension = file[0...file.index('.')] + file[file.index('.')..-1] #filename with any extension
+    extension = file.dup #filename with any extension
     file[file.index('.')..-1] = '.ppm'
     $GRID = create_grid()
     Draw.push_edge_matrix(edgemat: edgemat)
@@ -38,6 +38,8 @@ module Utils
 
     #Convert filetype
     puts %x[convert #{file} #{extension}]
+    if not extension["ppm"]
+      puts %x[rm #{file}] end
   end
 
   def self.display(tempfile: $TEMPFILE)

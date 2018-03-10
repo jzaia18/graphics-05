@@ -94,4 +94,6 @@ scale
 0.95 1 1
 apply
 display
+save
+bender.png
 quit
