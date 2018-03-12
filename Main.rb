@@ -29,7 +29,7 @@ $BC = $DRAW_COLOR[2]
 ##=================== MAIN ==========================
 ### Take in script file
 
-if ARGV
+if ARGV[0]
   $INFILE = ARGV[0]
 end
 
