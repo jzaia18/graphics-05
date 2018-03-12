@@ -13,7 +13,7 @@ $RESOLUTION = 500 # All images are squares
 $DEBUGGING = false
 $BACKGROUND_COLOR = [80, 80, 80] # [r, g, b]
 $DRAW_COLOR = [200, 200, 200]
-$INFILE = "script"
+$INFILE = "bender"
 $OUTFILE = "image.ppm"
 $TEMPFILE = "temmmmp.ppm" # Used as temp storage for displaying
 $dt = 0.008 # The amount that the parametric t is incremented by on each loop
@@ -28,5 +28,9 @@ $BC = $DRAW_COLOR[2]
 
 ##=================== MAIN ==========================
 ### Take in script file
+
+if ARGV
+  $INFILE = ARGV[0]
+end
 
 Utils.parse_file()
